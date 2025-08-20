@@ -1,0 +1,31 @@
+.wrapper{
+    position: relative;
+
+}
+
+.searchbar {
+
+  background-color: #e5e7eb;
+  width: 20rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  border: none;
+  text-align: center;
+  padding: 0.1rem;
+  box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+  margin-bottom: 0.5rem;
+}
+.list {
+  background-color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  list-style-type: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  text-align: start;
+  box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  width: 100%;
+}
