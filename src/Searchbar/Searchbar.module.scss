@@ -1,10 +1,8 @@
-.wrapper{
-    position: relative;
-
+.wrapper {
+  position: relative;
 }
 
 .searchbar {
-
   background-color: #e5e7eb;
   width: 20rem;
   height: 2rem;
@@ -27,5 +25,25 @@
   text-align: start;
   box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.1);
   border: none;
+  
   width: 100%;
+  .list_element {
+    padding: 0.5rem;
+    &:hover {
+      cursor: pointer;
+      background-color: #0703034f;
+      border-radius: 1rem;
+     
+    }
+    &:active {
+      background: #d9d9d9;
+      transform: scale(0.98);
+    }
+    &::selection {
+      background: transparent;
+      text-decoration: underline;
+      text-decoration-color: #007bff;
+      text-decoration-thickness: 2px;
+    }
+  }
 }

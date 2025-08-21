@@ -18,16 +18,6 @@ function Header() {
               Weather
             </a>
           </li>
-          <li className={styles.routs}>
-            <a className={styles.links} href="">
-              History
-            </a>
-          </li>
-          <li className={styles.routs}>
-            <a className={styles.links} href="">
-              registration placeholder
-            </a>
-          </li>
         </ul>
       </nav>
     </>

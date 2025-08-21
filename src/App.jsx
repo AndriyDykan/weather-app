@@ -1,11 +1,16 @@
 import Header from "./Header/Header";
 import Card from "./Card/Card";
+import React,{useState} from "react";
+import { CityProvider } from "./CityContext";
 function App() {
+
+
   return (
-    <>
-      <Header />
+    <CityProvider>
+      <Header/>
+      <Card/>
       
-    </>
+    </CityProvider>
   );
 }
 
