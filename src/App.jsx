@@ -1,15 +1,12 @@
-import Header from "./Header/Header";
-import Card from "./Card/Card";
-import React,{useState} from "react";
-import { CityProvider } from "./CityContext";
+import Header from "./Components/Header/Header";
+import Display from "./Components/DisplayCard/DisplayCard";
+
+import { CityProvider } from "./context/CityContext";
 function App() {
-
-
   return (
     <CityProvider>
-      <Header/>
-      <Card/>
-      
+      <Header />
+      <Display />
     </CityProvider>
   );
 }
