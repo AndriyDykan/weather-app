@@ -1,4 +1,4 @@
-import styles from "./DisplayCard.module.scss";
+
 import { CityContext } from "../../context/CityContext";
 import { useWeatherFetch, useForcastFetch } from "../../hooks/weatherFetch";
 import PresentWeather from "../PresentWeather/PresentWeather";
@@ -14,16 +14,18 @@ function DisplayCard() {
   const { forcast } = useForcastFetch(selectedCity);
   return (
     <>
-      <section className={styles.display}>
-        {!selectedCity && <p>Please select a city</p>}
-        {weather && forcast && (
-          <>
-            <PresentWeather data={weather[0]} />
-            <Chart data={forcast[0]} />
-          </>
-        )}
+      <section className=" flex gap-5 flex-col flex-1  justify-center items-center gap-4 ">
+        <div className="flex h-1/2 w-[70%]  justify-center card gap-5" >
+          {!selectedCity && <p className=" text-4xl bg-gray-200 rounded-xl p-4 shadow-custom "> Please select a city</p>}
+          {weather && forcast && (
+            <>
+              <PresentWeather data={weather[0]} />
+              <Chart data={forcast[0]} />
+            </>
+          )}
+        </div>
+        <div className="card ">{forcast && <Karousel data={forcast}></Karousel>}</div>
       </section>
-      <section>{forcast && <Karousel data={forcast}></Karousel>}</section>
     </>
   );
 }

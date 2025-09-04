@@ -1,4 +1,4 @@
-import styles from "./Searchbar.module.scss";
+
 import { useState, useContext } from "react";
 import {useCityFetch} from "../../hooks/weatherFetch";
 import { CityContext } from "../../context/CityContext";
@@ -11,26 +11,26 @@ function Searchbar() {
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className="relative"> 
         <input
           onChange={(e) => setSearch(e.target.value)}
           value={search}
           placeholder="Enter city"
-          className={styles.searchbar}
+          className="bg-grey-200 w-100 h-8 rounded border-0 text-center p-1 shadow-custom outline-none mb-2 mt-2"
           type="text"
         />
         {loading && (
           <>
-            <ul className={styles.list}>
+            <ul>
               <li>loading</li>
             </ul>
           </>
         )}
         {!loading && options.length > 0 && (
-          <ul className={styles.list}>
+          <ul className="bg-grey-200 flex flex-col absolute list-none  rounded p-2 text-start shadow-custom border-0 w-full">
             {options.map((element, index) => (
               <li
-                className={styles.list_element}
+                className="p-2 cursor-pointer  hover:bg-[rgba(7,3,3,0.31)] hover:rounded-xl active:bg-gray-300 active:[scale:0.98]"
                 onClick={() => {
                   setSelectedCity(element);
                   clearSeach();

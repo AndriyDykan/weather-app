@@ -1,14 +1,14 @@
-import styles from "./Header.module.scss";
+
 import icon from "../../assets/cloud-regular-full.svg";
 import Searchbar from "../Searchbar/Searchbar";
 
 function Header() {
   return (
     <>
-      <nav className={""}>
-        <ul className={styles.navbar}>
+      <nav className="my-5">
+        <ul className="flex justify-around items-center h-20 mt-4 px-20 list-none ">
           <li>
-            <img className={styles.icon} src={icon} alt="Cloud icon" />
+            <img className="m-4 w-12 h-auto" src={icon} alt="Cloud icon" />
           </li>
           <li>
             <Searchbar />

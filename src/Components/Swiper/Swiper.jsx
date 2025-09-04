@@ -22,7 +22,7 @@ function Karousel({ data }) {
           </SwiperSlide>
         ))}
       </Swiper>
-      ;
+      
     </>
   );
 }

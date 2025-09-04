@@ -32,18 +32,20 @@ function Chart({ data }) {
   ];
 
   return (
-    <ResponsiveContainer width="50%" height="50%">
-      <BarChart
-        data={chartData}
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-      >
-        <XAxis dataKey="part" />
-        <YAxis />
-        <Tooltip />
-        <Bar dataKey="temp" fill="#82ca9d" name="Temperature" />
-        <Bar dataKey="feels_like" fill="#8884d8" name="Feels Like" />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className=" shadow-custom bg-zinc-300 rounded-xl p-5 h-[300px] w-[70%]">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          data={chartData}
+          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+        >
+          <XAxis dataKey="part" />
+          <YAxis />
+          <Tooltip />
+          <Bar dataKey="temp" fill="#82ca9d" name="Temperature" />
+          <Bar dataKey="feels_like" fill="#8884d8" name="Feels Like" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 

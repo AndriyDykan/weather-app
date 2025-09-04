@@ -3,7 +3,7 @@ import styles from "./PresentWeather.module.scss";
 function PresentWeather({ data }) {
   return (
     <>
-      <section>
+      <section className="shadow-custom bg-zinc-300 rounded-xl p-5 w-[25%]">
         <header>
           <time>
             {data.date}{" "}

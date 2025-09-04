@@ -3,7 +3,7 @@ function Card({ data }) {
  
   return (
    
-      <article>
+      <article className="shadow-custom bg-zinc-300 rounded-xl p-4 min-w-xs"> 
         <header>
           <h2><time>{data.date}</time></h2>
           
