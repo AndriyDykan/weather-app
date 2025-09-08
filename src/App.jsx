@@ -1,14 +1,14 @@
-import Header from "./Components/Header/Header";
-import Display from "./Components/DisplayCard/DisplayCard";
-import Footer from "./Components/Footer/Footer";
+import Header from "./Components/Header";
+import Display from "./Components/DisplayCard";
+import Footer from "./Components/Footer";
 import { CityProvider } from "./context/CityContext";
 function App() {
   return (
     <CityProvider>
-      <main className="flex  min-h-screen flex-col">
+      <main className="flex min-h-[90vh] m-15  border-2 border-gray-300  rounded-2xl flex-col">
         <Header />
         <Display />
-        <Footer />
+        <Footer/>
       </main>
     </CityProvider>
   );

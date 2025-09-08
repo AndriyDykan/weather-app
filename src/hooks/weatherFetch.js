@@ -69,10 +69,14 @@ export function useWeatherFetch(selectedCity) {
         if (!response.ok) throw new Error("Failed to fetch weather");
 
         const data = await response.json();
-        const formatted = [
+        const formatted = 
           {
-            date: new Date(data.dt * 1000).toLocaleTimeString("en-US", {
+            day: new Date(data.dt * 1000).toLocaleDateString("en-US", { weekday: "long" }),
+            time: new Date(data.dt * 1000).toLocaleTimeString("en-US", {
+              
+              hour12:false,
               hour: "2-digit",
+              minute:"2-digit",
             }),
             temp: data.main.temp,
             feels_like: data.main.feels_like,
@@ -81,8 +85,8 @@ export function useWeatherFetch(selectedCity) {
             wind_speed: data.wind.speed,
             name: data.name,
             visibility: data.visibility / 1000,
-          },
-        ];
+          }
+        ;
 
         setWeather(formatted);
       } catch (err) {

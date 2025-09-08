@@ -1,8 +1,8 @@
 
-import styles from "./Swiper.module.scss";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import Card from "../WeatherCard/Card";
+import Card from "./Card";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 function Karousel({ data }) {
   return (
     <>
-      <Swiper className={styles.swiper}
+      <Swiper 
         modules={[Navigation]}
         navigation
         spaceBetween={200}
