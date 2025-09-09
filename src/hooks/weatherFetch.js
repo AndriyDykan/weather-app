@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import useWeatherIcon from "../hooks/icons";
 
 const API_KEY = "f501deca0894d22ee3c4e77ff2d5c2a0";
 const CITY_URL = "http://api.openweathermap.org/geo/1.0/direct";
@@ -69,25 +70,25 @@ export function useWeatherFetch(selectedCity) {
         if (!response.ok) throw new Error("Failed to fetch weather");
 
         const data = await response.json();
-        const formatted = 
-          {
-            day: new Date(data.dt * 1000).toLocaleDateString("en-US", { weekday: "long" }),
-            time: new Date(data.dt * 1000).toLocaleTimeString("en-US", {
-              
-              hour12:false,
-              hour: "2-digit",
-              minute:"2-digit",
-            }),
-            temp: data.main.temp,
-            feels_like: data.main.feels_like,
-            humidity: data.main.humidity,
-            pressure: data.main.pressure,
-            wind_speed: data.wind.speed,
-            name: data.name,
-            visibility: data.visibility / 1000,
-          }
-        ;
 
+        const formatted = {
+          day: new Date(data.dt * 1000).toLocaleDateString("en-US", {
+            weekday: "long",
+          }),
+          time: new Date(data.dt * 1000).toLocaleTimeString("en-US", {
+            hour12: false,
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          temp: data.main.temp,
+          feels_like: data.main.feels_like,
+          humidity: data.main.humidity,
+          pressure: data.main.pressure,
+          wind_speed: data.wind.speed,
+          name: data.name,
+          visibility: data.visibility / 1000,
+          weather_id: data.weather[0].id,
+        };
         setWeather(formatted);
       } catch (err) {
         setError(err.message);
@@ -128,20 +129,20 @@ export function useForcastFetch(selectedCity) {
 
         const first11Days = data.list.slice(1, 8);
         const formatted = first11Days.map((item) => ({
-          day: new Date(item.dt * 1000).toLocaleDateString("en-US", { weekday: "long" }),
+          day: new Date(item.dt * 1000).toLocaleDateString("en-US", {
+            weekday: "long",
+          }),
           date: new Date(item.dt * 1000).toLocaleDateString("en-US"),
-          temps: 
-            item.temp
-          ,
+          temps: item.temp,
           feels_like: [
             item.feels_like.morn,
             item.feels_like.day,
             item.feels_like.eve,
             item.feels_like.night,
           ],
-          weather:item.weather[0].description,
+          weather: item.weather[0].description,
+          weather_id: item.weather[0].id,
         }));
-
 
         setForcast(formatted);
       } catch (err) {

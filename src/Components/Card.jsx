@@ -1,4 +1,4 @@
-import icon from "../assets/cloud-regular-full.svg";
+import icon from "../assets/icons/day_icons/01d.svg";
 function Card({ data }) {
   return (
     <article className="w-[7rem] h-[10rem] gap-4 flex flex-col justify-center items-center ">
