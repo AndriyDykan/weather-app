@@ -1,18 +1,18 @@
 import icon from "../assets/cloud-regular-full.svg";
-import { useWeatherFetch, useForcastFetch } from "../hooks/weatherFetch";
+
 import { CityContext } from "../context/CityContext";
 import { useContext } from "react";
 
 import Chart from "./Chart";
 
 function PresentWeather() {
-  const { selectedCity, setSelectedCity } = useContext(CityContext);
-  const { weather } = useWeatherFetch(selectedCity);
-  const { forcast } = useForcastFetch(selectedCity);
+  const { weather, forcast } = useContext(CityContext);
+
   return (
     <>
-      {weather !== null && forcast!==null  && (
+      {weather !== null && forcast !== null && (
         <div className="flex flex-col items-center gap-10 p-5 ">
+        
           <section className="pb-4 flex flex-col md:flex-row items-center w-[40vw] max-w-4xl  border-b-1 border-grey-100">
             <div className="flex flex-col text-start mr-auto ">
               <h2 className="text-9xl font-bold">
@@ -31,7 +31,7 @@ function PresentWeather() {
           </section>
 
           <section className="w-[40vw] max-w-4xl h-80 ">
-            <Chart data = {forcast[0]}/>
+            <Chart data={forcast[0]} />
           </section>
 
           <ul className="flex justify-around border p-4 rounded-2xl w-[40vw] max-w-4xl">

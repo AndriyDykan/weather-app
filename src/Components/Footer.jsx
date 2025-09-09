@@ -1,7 +1,8 @@
 function Footer() {
   return (
     <>
-      <div className="flex justify-start m-2" >&reg; 2025 Weather </div>
+      <div className="flex justify-center mx-5 my-5" >&reg; 2025 Weather </div>
+      
     </>
   );
 }

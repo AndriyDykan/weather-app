@@ -119,15 +119,16 @@ export function useForcastFetch(selectedCity) {
 
       try {
         const response = await fetch(
-          `${FORCAST_URL}lat=${selectedCity.lat}&lon=${selectedCity.lon}&appid=${API_KEY}&units=metric`
+          `${FORCAST_URL}lat=${selectedCity.lat}&lon=${selectedCity.lon}&cnt=16&appid=${API_KEY}&units=metric`
         );
 
         if (!response.ok) throw new Error("Failed to fetch weather");
 
         const data = await response.json();
 
-        const first11Days = data.list.slice(0, 11);
+        const first11Days = data.list.slice(1, 8);
         const formatted = first11Days.map((item) => ({
+          day: new Date(item.dt * 1000).toLocaleDateString("en-US", { weekday: "long" }),
           date: new Date(item.dt * 1000).toLocaleDateString("en-US"),
           temps: 
             item.temp
@@ -138,11 +139,9 @@ export function useForcastFetch(selectedCity) {
             item.feels_like.eve,
             item.feels_like.night,
           ],
-          humidity: item.humidity,
-          pressure: item.pressure,
-          wind_speed: item.speed,
-          name: data.city.name,
+          weather:item.weather[0].description,
         }));
+
 
         setForcast(formatted);
       } catch (err) {

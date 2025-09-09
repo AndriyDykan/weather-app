@@ -1,30 +1,11 @@
-
+import icon from "../assets/cloud-regular-full.svg";
 function Card({ data }) {
- 
   return (
-   
-      <article className="shadow-custom bg-zinc-300 rounded-xl p-4 min-w-xs"> 
-        <header>
-          <h2><time>{data.date}</time></h2>
-          
-        </header>
-
-        <h3>Temperatures</h3>
-        <ul>
-          <li>Morning: {data.temps.morn}°C</li>
-          <li>Day:{data.temps.day} °C</li>
-          <li>Evening: {data.temps.eve}°C</li>
-          <li>Night: {data.temps.night}°C</li>
-        </ul>
-
-        <h3>Conditions</h3>
-        <ul>
-          <li>Humidity:{data.humidity} %</li>
-          <li>Pressure:{data.pressure} hPa</li>
-          <li>Wind Speed:{data.wind_speed} m/s</li>
-        </ul>
-      </article>
-   
+    <article className="w-[7rem] h-[10rem] gap-4 flex flex-col justify-center items-center ">
+      <time className="text-xl">{data.date}</time>
+      <img className=" w-10 h-10 " src={icon} alt="" />
+      <span className="text-3xl">{Math.round(data.temps.day)}°</span>
+    </article>
   );
 }
 
