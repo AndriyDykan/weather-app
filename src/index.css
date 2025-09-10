@@ -12,20 +12,23 @@
   }
 
   body {
-    
     font-family: var(--font-mono);
     background-color: #f7f7f7;
     color: #333;
   }
+  img {
+    filter: brightness(20%) contrast(100%);
+  }
 }
 
-
-@layer utilities{
-  .shadow-custom{
+@layer utilities {
+  .shadow-custom {
     box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.1);
   }
   .card {
     @apply bg-gray-200 rounded-xl p-5;
     box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.1);
   }
+}
+@layer components {
 }

@@ -33,7 +33,7 @@ function Chart({ data }) {
   ];
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%" height="75%">
       <LineChart data={chartData} margin={{ bottom: 10, right: 10, left: 0 }}>
         <CartesianGrid stroke="grey" strokeDasharray="3 3" vertical={false} />
         <XAxis dataKey="part" tickMargin={15} />

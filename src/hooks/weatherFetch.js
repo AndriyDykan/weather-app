@@ -5,6 +5,7 @@ const API_KEY = "f501deca0894d22ee3c4e77ff2d5c2a0";
 const CITY_URL = "http://api.openweathermap.org/geo/1.0/direct";
 const WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?";
 const FORCAST_URL = "https://api.openweathermap.org/data/2.5/forecast/daily?";
+const HOURLY_URL = "https://pro.openweathermap.org/data/2.5/forecast/hourly?";
 
 export function useCityFetch(city) {
   const [options, setOptions] = useState([]);
@@ -35,6 +36,7 @@ export function useCityFetch(city) {
           lat: element.lat,
           lon: element.lon,
         }));
+
         setOptions(citys);
       } catch (err) {
         setError(err.message);
@@ -70,16 +72,18 @@ export function useWeatherFetch(selectedCity) {
         if (!response.ok) throw new Error("Failed to fetch weather");
 
         const data = await response.json();
+        console.log(data);
 
         const formatted = {
-          day: new Date(data.dt * 1000).toLocaleDateString("en-US", {
+          day: new Date(data.dt).toLocaleDateString("en-US", {
             weekday: "long",
           }),
-          time: new Date(data.dt * 1000).toLocaleTimeString("en-US", {
-            hour12: false,
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
+          time: (() => {
+            const local = new Date((data.dt + data.timezone) * 1000); // data.dt в секундах
+            const hours = String(local.getUTCHours()).padStart(2, "0");
+            const minutes = String(local.getUTCMinutes()).padStart(2, "0");
+            return `${hours}:${minutes}`;
+          })(),
           temp: data.main.temp,
           feels_like: data.main.feels_like,
           humidity: data.main.humidity,
@@ -156,4 +160,51 @@ export function useForcastFetch(selectedCity) {
   }, [selectedCity]);
 
   return { loading, forcast, error };
+}
+
+export function useHourlyFetch(selectedCity) {
+  const [loading, setLoading] = useState(false);
+  const [hourly, setHourly] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!selectedCity) {
+      setHourly(null);
+      return;
+    }
+
+    const fetcHourly = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch(
+          `${HOURLY_URL}lat=${selectedCity.lat}&lon=${selectedCity.lon}&cnt=24&appid=${API_KEY}&units=metric`
+        );
+
+        if (!response.ok) throw new Error("Failed to fetch weather");
+
+        const data = await response.json();
+
+        const formatted = data.list.map((item) => ({
+          time: new Date(item.dt * 1000).toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          }),
+          temp: item.main.temp,
+          weather_id: item.weather[0].id,
+        }));
+        setHourly(formatted);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetcHourly();
+  }, [selectedCity]);
+
+  return { loading, hourly, error };
 }

@@ -5,15 +5,17 @@ import { CityContext } from "../context/CityContext";
 import { useContext } from "react";
 
 function Forcast() {
-  const { forcast } = useContext(CityContext);
+  const { forcast,hourly } = useContext(CityContext);
+
   return (
     <>
-      {forcast !== null && (
+      {forcast !== null && hourly!==null &&(
         <>
-          <section>
-            <Karousel data={forcast}></Karousel>
+          <section className=" p-5 m-5 w-[40vw]">
 
-            <ul className="border-y border-gray p-5 m-5 w-[40vw]">
+            <Karousel data={hourly}></Karousel>
+
+            <ul className="flex flex-col justify-center  gap-4 border-y border-gray h-[50vh]">
               {forcast.map((element, index) => (
                 <ForcastList
                   key={index}

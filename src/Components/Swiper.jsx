@@ -10,9 +10,10 @@ function Karousel({ data }) {
    
     <Swiper
       modules={[Pagination]}
-      spaceBetween={20}
+      spaceBetween={0}
       slidesPerView={6}
       pagination={{ clickable: true }}
+      className="[&_.swiper-pagination]: !py-10"
     >
       {data.map((element, index) => (
         <SwiperSlide key={index}>

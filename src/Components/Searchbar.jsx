@@ -8,6 +8,7 @@ function Searchbar() {
   const debounce = useDebounce(search, 1000);
   const { options, loading, error,clearSeach } = useCityFetch(debounce);
   const { setSelectedCity } = useContext(CityContext);
+  
 
   return (
     <>
@@ -27,7 +28,7 @@ function Searchbar() {
           </>
         )}
         {!loading && options.length > 0 && (
-          <ul className="absolute border-1 rounded-3xl p-3 m-1 bg-white ">
+          <ul className="absolute border-1 rounded-3xl p-3 m-1 bg-white z-2">
             {options.map((element, index) => (
               <li
                 className="border-b-1 my-4"
