@@ -33,14 +33,20 @@ function Chart({ data }) {
   ];
 
   return (
-    <ResponsiveContainer width="100%" height="75%">
-      <LineChart data={chartData} margin={{ bottom: 10, right: 10, left: 0 }}>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart
+        data={chartData}
+        margin={{ top: 0, right: 10, left: 0, bottom: 0 }}
+      >
         <CartesianGrid stroke="grey" strokeDasharray="3 3" vertical={false} />
-        <XAxis dataKey="part" tickMargin={15} />
+        <XAxis dataKey="part" tickMargin={10} />
         <YAxis
           domain={["dataMin - 2", "dataMax + 2"]}
-          tickMargin={20}
           tickFormatter={(value) => `${value}°`}
+          axisLine={false} 
+          tickLine={false}
+       
+          dx={-10}
         />
         <Tooltip />
         <Line

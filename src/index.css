@@ -19,6 +19,20 @@
   img {
     filter: brightness(20%) contrast(100%);
   }
+  .swiper-pagination-progressbar {
+  position: relative !important;
+  bottom: 0 !important;
+  top: auto !important;
+
+  width: 100% !important;     
+  margin-top: 1rem !important; 
+
+  height: 4px;
+  background-color: #e5e7eb; 
+}
+  .swiper-pagination-progressbar-fill {
+    background: black !important;
+  }
 }
 
 @layer utilities {

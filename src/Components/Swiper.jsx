@@ -7,13 +7,26 @@ import "swiper/css/pagination";
 
 function Karousel({ data }) {
   return (
-   
     <Swiper
       modules={[Pagination]}
       spaceBetween={0}
       slidesPerView={6}
-      pagination={{ clickable: true }}
-      className="[&_.swiper-pagination]: !py-10"
+      pagination={{ clickable: true,  type:"progressbar"}}
+      breakpoints={{
+        200: {
+          slidesPerView: 3, 
+        },
+        700:{
+          lidesPerView: 4,
+        },
+        900: {
+          slidesPerView: 4,
+        },
+        1024: {
+          slidesPerView: 6,
+        },
+      }}
+        className=""
     >
       {data.map((element, index) => (
         <SwiperSlide key={index}>

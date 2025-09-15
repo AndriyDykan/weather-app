@@ -12,26 +12,26 @@ function Searchbar() {
 
   return (
     <>
-      <div className="relative"> 
+      <div className=" relative flex flex-3 justify-center items-center"> 
         <input
           onChange={(e) => setSearch(e.target.value)}
           value={search}
-          placeholder="Enter city"
-          className="border-1 rounded-3xl w-70 h-10 text-center focus:outline-none"
+          placeholder="Search city"
+          className="text-center border rounded-xl w-full text-xl sm:text-2xl"
           type="text"
         />
         {loading && (
           <>
-            <ul>
+            <ul className="absolute z-[9999] top-full w-full  p-3 border rounded-xl text-xl sm:text-2xl">
               <li>loading</li>
             </ul>
           </>
         )}
         {!loading && options.length > 0 && (
-          <ul className="absolute border-1 rounded-3xl p-3 m-1 bg-white z-2">
+          <ul className="absolute z-[9999] top-full w-full  p-3 border rounded-xl text-xl sm:text-2xl">
             {options.map((element, index) => (
               <li
-                className="border-b-1 my-4"
+                className="p-1 hover:bg-sky-700 "
                 onClick={() => {
                   setSelectedCity(element);
                   clearSeach();

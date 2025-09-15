@@ -5,15 +5,13 @@ import { CityProvider } from "./context/CityContext";
 function App() {
   return (
     <CityProvider>
-      <main className="flex min-h-[80vh] my-5 mx-20 border-2 border-gray-300  rounded-2xl flex-col">
+      <main className="w-full min-h-screen p-4 flex-col flex flex-col">
         <Header />
         <Display />
-        <Footer/>
+        <Footer />
       </main>
     </CityProvider>
   );
 }
 
 export default App;
-
-

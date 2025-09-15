@@ -79,7 +79,7 @@ export function useWeatherFetch(selectedCity) {
             weekday: "long",
           }),
           time: (() => {
-            const local = new Date((data.dt + data.timezone) * 1000); // data.dt в секундах
+            const local = new Date((data.dt + data.timezone) * 1000);
             const hours = String(local.getUTCHours()).padStart(2, "0");
             const minutes = String(local.getUTCMinutes()).padStart(2, "0");
             return `${hours}:${minutes}`;
@@ -89,7 +89,7 @@ export function useWeatherFetch(selectedCity) {
           humidity: data.main.humidity,
           pressure: data.main.pressure,
           wind_speed: data.wind.speed,
-          name: data.name,
+          name: selectedCity.name,
           visibility: data.visibility / 1000,
           weather_id: data.weather[0].id,
         };
@@ -187,11 +187,12 @@ export function useHourlyFetch(selectedCity) {
         const data = await response.json();
 
         const formatted = data.list.map((item) => ({
-          time: new Date(item.dt * 1000).toLocaleTimeString("en-US", {
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false,
-          }),
+          time: (() => {
+            const local = new Date((item.dt + data.city.timezone) * 1000);
+            const hours = String(local.getUTCHours()).padStart(2, "0");
+            const minutes = String(local.getUTCMinutes()).padStart(2, "0");
+            return `${hours}:${minutes}`;
+          })(),
           temp: item.main.temp,
           weather_id: item.weather[0].id,
         }));
