@@ -17,7 +17,7 @@ function PresentWeather() {
   return (
     <>
       {weather !== null && forcast !== null && (
-        <div className="flex flex-col w-full gap-5 ">
+        <div className="flex flex-col w-full gap-5">
           <section className="flex justify-between w-full">
             <div className="flex justify-center items-left flex-col">
               <h2 className="text-xl sm:text-4xl">{Math.round(weather.temp)}°</h2>
@@ -27,7 +27,7 @@ function PresentWeather() {
               </time>
             </div>
             <div className="flex justify-center items-center">
-              <img className="w-30 sm:w-50" src={icon_src} alt="Weather icon" />
+              <img className="w-30 sm:w-50 xl:w-60" src={icon_src} alt="Weather icon" />
             </div>
           </section>
 

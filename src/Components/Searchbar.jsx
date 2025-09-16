@@ -1,18 +1,16 @@
-
 import { useState, useContext } from "react";
-import {useCityFetch} from "../hooks/weatherFetch";
+import { useCityFetch } from "../hooks/weatherFetch";
 import { CityContext } from "../context/CityContext";
 import useDebounce from "../hooks/debounce";
 function Searchbar() {
   const [search, setSearch] = useState("");
   const debounce = useDebounce(search, 1000);
-  const { options, loading, error,clearSeach } = useCityFetch(debounce);
+  const { options, loading, error, clearSeach } = useCityFetch(debounce);
   const { setSelectedCity } = useContext(CityContext);
-  
 
   return (
     <>
-      <div className=" relative flex flex-3 justify-center items-center"> 
+      <div className=" relative flex flex-3 xl:flex-1 justify-center items-center">
         <input
           onChange={(e) => setSearch(e.target.value)}
           value={search}
@@ -28,10 +26,10 @@ function Searchbar() {
           </>
         )}
         {!loading && options.length > 0 && (
-          <ul className="absolute z-[9999] top-full w-full  p-3 border rounded-xl text-xl sm:text-2xl">
+          <ul className="absolute z-[9999] top-full w-full  p-3 border rounded-xl text-xl sm:text-2xl bg-[white]">
             {options.map((element, index) => (
               <li
-                className="p-1 hover:bg-sky-700 "
+                className="p-1 hover:bg-gray-300  rounded-sm"
                 onClick={() => {
                   setSelectedCity(element);
                   clearSeach();
@@ -39,7 +37,9 @@ function Searchbar() {
                 }}
                 key={index}
               >
-                {`${element.name}, ${element.state || ""}, ${element.country}`}
+                {`${element.name}${
+                  element.state ? `, ${element.state}` : ""
+                }, ${element.country}`}
               </li>
             ))}
           </ul>

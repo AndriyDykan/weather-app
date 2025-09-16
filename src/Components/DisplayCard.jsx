@@ -15,7 +15,7 @@ function DisplayCard() {
           There is no selected city
         </span>
       ) : (
-        <section className=" grid grid-cols-1 gap-10 flex-1 w-full">
+        <section className=" grid grid-cols-1 xl:grid-cols-2 gap-10 flex-1 w-full items-center">
           <PresentWeather />
           <Forcast/>
          
